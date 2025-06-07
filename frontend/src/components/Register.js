@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./Register.css";
 
 function Register() {
   const [name, setName] = useState("");
@@ -34,7 +35,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div id="reg_back">
       <h2>Register</h2>
       {success && <p style={{ color: "green" }}>{success}</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -54,10 +55,10 @@ function Register() {
           <label>Password:</label><br />
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
         </div>
+        <p></p>
 
-        <button type="submit">Register</button>
+        <button type="submit" id="reg_button">Register</button>
       </form>
-
       <p>Already have an account? <Link to="/login">Login here</Link></p>
     </div>
   );

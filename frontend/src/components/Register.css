@@ -1,0 +1,12 @@
+#reg_button{
+  background-color: #4a90e2;
+  text-align: center;
+  border-radius: 5px;
+ margin-left: 40px;
+ padding: 10px 20px;
+}
+#reg_back{
+    background-color:rgb(242, 247, 247);
+    min-height: 100vh;
+    margin-top: 0;
+}

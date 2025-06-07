@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+#top_margin{
+  margin: 10px;
+  background-color: rgb(147, 147, 229);
+  padding: 20px;
+}
+#home{
+  padding: 4px;
+  border-radius: 5px;
+  bottom: 0;
+  
+}

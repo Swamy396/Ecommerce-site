@@ -28,7 +28,7 @@ function Login({ setUser }) {
   };
 
   return (
-    <div>
+    <div id="log_back">
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -36,15 +36,18 @@ function Login({ setUser }) {
         
         <div>
           <label>Email:</label><br />
+          
           <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
         </div>
+        
 
         <div>
           <label>Password:</label><br />
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
         </div>
+        <p></p>
 
-        <button type="submit">Login</button>
+        <button type="submit" id="login">Login</button>
       </form>
 
       <p>Don't have an account? <Link to="/register">Register here</Link></p>

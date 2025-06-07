@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Home.css"; 
+import "./Home.css";
+import OrderForm from "./OrderForm"; 
 
 function Home({ user }) {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showOrderForm, setShowOrderForm] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:8888/products")
@@ -39,6 +42,15 @@ function Home({ user }) {
         setMessage("Error adding product to cart.");
         console.error(err);
       });
+  };
+
+  const handleOrderClick = (product) => {
+    if (!user) {
+      setMessage("Please login to place an order.");
+      return;
+    }
+    setSelectedProduct(product);
+    setShowOrderForm(true);
   };
 
   const categories = ["All", "Electronics", "Makeup", "Bags"];
@@ -84,14 +96,25 @@ function Home({ user }) {
             <img src={p.image} alt={p.name} />
             <h4>{p.name}</h4>
             <p>Category: {p.category}</p>
-            <p>Price: ${p.price}</p>
-            <button onClick={() => handleAddToCart(p.productid)}>Add to Cart</button>
+            <p>Price: ₹{(p.price * 80).toFixed(2)}</p>
+
+            <div className="button-stack">
+              <button onClick={() => handleAddToCart(p.productid)}>Add to Cart</button><p></p>
+              <button className="order-btn" onClick={() => handleOrderClick(p)}>Order</button>
+            </div>
           </div>
         ))}
       </div>
+
+      {showOrderForm && selectedProduct && (
+        <OrderForm
+          product={selectedProduct}
+          user={user}
+          onClose={() => setShowOrderForm(false)}
+        />
+      )}
     </div>
   );
 }
 
 export default Home;
-

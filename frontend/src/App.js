@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
+import "./App.css";
 
 function NavBar({ user, setUser }) {
   const navigate = useNavigate();
@@ -17,19 +18,19 @@ function NavBar({ user, setUser }) {
   };
 
   return (
-    <nav style={{ marginBottom: 20 }}>
-      <Link to="/" style={{ marginRight: 15 }}>🏠Home</Link>
-      <Link to="/cart" style={{ marginRight: 15 }}>🛒My Cart</Link>
+    <nav style={{ marginBottom: 20 }} id="top_margin">
+      <Link to="/" style={{ marginRight: 15 }}><button id="home">🏠Home</button></Link>
+      <Link to="/cart" style={{ marginRight: 15 }}><button id="home">🛒My Cart</button></Link>
 
       {user ? (
         <>
-          <span style={{ marginRight: 15 }}>Welcome, {user.name}</span>
-          <button onClick={handleLogout}>Logout</button>
+          <span style={{ marginRight: 15}}>Welcome, {user.name}</span>
+          <button onClick={handleLogout} id="home">Logout</button>
         </>
       ) : (
         <>
-          <Link to="/login" style={{ marginRight: 15 }}>🔑Login</Link>
-          <Link to="/register">📝Register</Link>
+          <Link to="/login" style={{ marginRight: 15 }}><button id="home">🔑Login</button></Link>
+          <Link to="/register"><button id="home">📝Register</button></Link>
         </>
       )}
     </nav>
