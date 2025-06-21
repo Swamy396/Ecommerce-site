@@ -28,7 +28,7 @@ function Register() {
         }
       })
       .catch(err => {
-        setError("Registration failed");
+        setError("Email is already registerd");
         setSuccess("");
         console.error(err);
       });

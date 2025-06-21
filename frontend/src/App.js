@@ -18,13 +18,13 @@ function NavBar({ user, setUser }) {
   };
 
   return (
-    <nav style={{ marginBottom: 20 }} id="top_margin">
+    <nav id="top_margin">
       <Link to="/" style={{ marginRight: 15 }}><button id="home">🏠Home</button></Link>
       <Link to="/cart" style={{ marginRight: 15 }}><button id="home">🛒My Cart</button></Link>
 
       {user ? (
         <>
-          <span style={{ marginRight: 15}}>Welcome, {user.name}</span>
+          <span style={{ marginRight: 15}}>Welcome, {user.name}!</span>
           <button onClick={handleLogout} id="home">Logout</button>
         </>
       ) : (

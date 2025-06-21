@@ -1,0 +1,47 @@
+ CREATE DATABASE  ecommerce_db;
+
+USE ecommerce_db;
+
+CREATE TABLE user_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email_id VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+products table:
+
+CREATE TABLE products (
+  productid INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  category VARCHAR(50) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  image VARCHAR(255) NOT NULL
+);
+
+cart:
+
+CREATE TABLE  cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user_details(userid) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(productid) ON DELETE CASCADE
+);
+
+
+
+values :
+
+INSERT INTO products (name, category, price, image) VALUES
+('Smartphone', 'Electronics', 299.99, 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80'),
+('Leather Bag', 'Bags', 120.00, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80'),
+('Makeup Kit', 'Makeup', 45.00, 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80'),
+('Laptop', 'Electronics', 899.99, 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80'),
+('Backpack', 'Bags', 60.00, 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80'),
+('Lipstick', 'Makeup', 25.00, 'https://images.unsplash.com/photo-1556228724-4c6a5a17f937?auto=format&fit=crop&w=400&q=80'),
+('Headphones', 'Electronics', 99.99, 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80'),
+('Handbag', 'Bags', 80.00, 'https://images.unsplash.com/photo-1542068829-1115f7259450?auto=format&fit=crop&w=400&q=80'),
+('Foundation', 'Makeup', 30.00, 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80'),
+('Smartwatch', 'Electronics', 199.99, 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=400&q=80');
+ 

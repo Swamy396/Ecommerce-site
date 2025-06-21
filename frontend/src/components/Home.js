@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; 
 import "./Home.css";
 import OrderForm from "./OrderForm"; 
 
@@ -10,6 +11,8 @@ function Home({ user }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     axios.get("http://localhost:8888/products")
@@ -23,7 +26,15 @@ function Home({ user }) {
 
   const handleAddToCart = (product_id) => {
     if (!user) {
-      setMessage("Please login to add items to cart.");
+      let guestCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
+      if (!guestCart.includes(product_id)) {
+        guestCart.push(product_id);
+        localStorage.setItem("guestCart", JSON.stringify(guestCart));
+        setMessage("Product added to cart.");
+        navigate("/cart");
+      } else {
+        alert("Product already in cart.");
+      }
       return;
     }
 
@@ -33,20 +44,20 @@ function Home({ user }) {
     })
       .then(res => {
         if (res.data.status === "success") {
-          setMessage("Product added to cart.");
+          navigate("/cart"); 
         } else {
           setMessage(res.data.message);
         }
       })
       .catch(err => {
-        setMessage("Error adding product to cart.");
+        alert("Product is already added to cart.");
         console.error(err);
       });
   };
 
   const handleOrderClick = (product) => {
     if (!user) {
-      setMessage("Please login to place an order.");
+      alert("Please login to place an order.");
       return;
     }
     setSelectedProduct(product);

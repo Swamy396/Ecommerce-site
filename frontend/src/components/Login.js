@@ -22,7 +22,7 @@ function Login({ setUser }) {
         }
       })
       .catch(err => {
-        setError("Login failed");
+        setError("Incorrect email or password");
         console.error(err);
       });
   };
